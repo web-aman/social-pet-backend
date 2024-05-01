@@ -30,20 +30,10 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false
     },
-    isVerified: {
-      type: Boolean,
-      default: false
-    },
     profileImage: {
       type: String
     },
     aboutUs: {
-      type: String
-    },
-    petImages: {
-      type: [String]
-    },
-    token: {
       type: String
     },
     tokens:{

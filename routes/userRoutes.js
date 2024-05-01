@@ -29,7 +29,7 @@ router.get('/get-user-pet-list', validateToken, getUserPetList);
 
 router.delete('/delete-user-pet/:id', validateToken, deleteUserPet);
 
-router.put('/update-profile', validateToken, upload.single("file"), updateProfile);
+router.put('/update-profile', validateToken, upload.single("imageFile"), updateProfile);
 
 router.post('/change-password', validateToken, userChangePassword, changePassword);
 

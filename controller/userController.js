@@ -120,11 +120,6 @@ const login = async (req, res) => {
 				expiresIn: "5d",
 			});
 
-			//Update the user data
-			// const updatedUser = await User.updateOne(
-			// 	{ _id: users._id, isDeleted: false },
-			// 	{ $push: { tokens: token } }
-			// );
 			const updatedUser = await User.findOneAndUpdate(
 				{
 					_id: users._id,
