@@ -13,7 +13,7 @@ const router = express.Router();
 router.post(
   "/register",
   validateToken,
-  upload.single("file"),
+  upload.single("imageFile"),
   checkFileSize,
   registerPet
 );
