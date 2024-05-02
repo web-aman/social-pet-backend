@@ -3,7 +3,9 @@ const md5 = require("md5");
 const moment = require("moment");
 const humanize = require("string-humanize");
 const Admin = require("../models/adminModel");
+const { breeds } = require("../config/catConfig");
 const Category = require("../models/categoryModel");
+const Breeds = require("../models/breedsModel");
 mongoose.set('strictQuery', true);
 const connectDb = async () => {
 	try {
@@ -34,12 +36,29 @@ const connectDb = async () => {
 			});
 		}
 		if (!category) {
-			const array = ['dog', 'cat', 'pig', 'cow', 'monkey', 'parrot', 'pigeon']
+			const array = ['dogs', 'cats', 'horses']
 			let catArray = []
 			array.forEach((data) => {
 				catArray.push({ category: humanize(data) })
 			})
+
 			await Category.create(catArray);
+			const petData = await Category.find({}).lean(true);
+			if (petData.length) {
+				let subArray = []
+				for (let i = 0; i < petData.length; i++) {
+					if (breeds[i]) {
+						for (let j = 0; j < breeds[i].length; j++) {
+							subArray.push({
+								petCategory: petData[i]._id,
+								petBreads: breeds[i][j]
+							})
+						}
+					}
+				}
+				await Breeds.create(subArray)
+			}
+
 		}
 	} catch (err) {
 		console.log(err);
