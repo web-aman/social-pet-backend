@@ -144,10 +144,12 @@ const login = async (req, res) => {
 
 const test = async (req, res) => {
 	try {
-		return res.status(200).send({
-			users: req.user,
-			message: `Welcome ${req.user.userName}`,
-		});
+
+		return res.send('Hello Aman docker')
+		// return res.status(200).send({
+		// 	users: req.user,
+		// 	message: `Welcome ${req.user.userName}`,
+		// });
 	} catch (error) {
 		// error response
 		return res.status(500).send({ message: "Something went wrong" });

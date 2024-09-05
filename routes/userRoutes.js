@@ -23,7 +23,7 @@ router.post("/forgot-password", forgotPass, forgotPassword);
 
 router.post("/login", loginData, login);
 
-router.get('/test', validateToken, test);
+router.get('/test', test);
 
 router.get('/get-user-pet-list', validateToken, getUserPetList);
 
