@@ -25,13 +25,14 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # Step 4: Build the Docker image
-      - name: Build and tag Docker image
+      # Stop any existing Docker containers using docker-compose
+      - name: Stop existing containers
         run: |
-          docker build -t amanneema1311/social-pet-backend-app:latest .
-          docker tag amanneema1311/social-pet-backend-app:latest amanneema1311/social-pet-backend-app:latest
+          docker-compose down
 
-      # Step 5: Push the Docker image to Docker Hub
-      - name: Push Docker image to Docker Hub
+      # Build and rebuild Docker containers
+      - name: Build and restart Docker Compose
         run: |
-          docker push amanneema1311/social-pet-backend-app:latest
+          docker-compose pull  # Optional if you're using external images
+          docker-compose build --no-cache  # Rebuild the images
+          docker-compose up -d  # Restart containers in detached mode
