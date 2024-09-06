@@ -30,12 +30,16 @@ jobs:
 
       - name: Stop and remove existing containers
         run: |
-          docker compose rm -f social-pet-backend
+          docker-compose down || echo "No resource found to remove"
 
       - name: Build and restart Docker Compose
         run: |
           docker-compose build --no-cache
-          docker compose up -d --no-deps --build social-pet-backend
+          docker-compose up -d
+
+      - name: Restart Nginx service
+        run: |
+          docker-compose restart nginx || echo "Nginx service not found"
 
       - name: Remove unused Docker images
         run: |
