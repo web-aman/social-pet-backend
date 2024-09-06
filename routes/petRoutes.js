@@ -11,11 +11,11 @@ const upload = require("../functions/upload");
 const router = express.Router();
 
 router.post(
-  "/register",
-  validateToken,
-  upload.single("imageFile"),
-  checkFileSize,
-  registerPet
+	"/register",
+	validateToken,
+	upload.single("imageFile"),
+	checkFileSize,
+	registerPet
 );
 
 router.get("/pet-list", validateToken, getPetList);
