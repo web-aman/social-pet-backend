@@ -42,3 +42,8 @@ jobs:
         run: |
           docker-compose build --no-cache
           docker-compose up -d
+
+      # Optionally, restart Nginx service
+      - name: Restart Nginx service
+        run: |
+          docker-compose restart nginx
