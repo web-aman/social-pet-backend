@@ -144,7 +144,7 @@ const login = async (req, res) => {
 
 const test = async (req, res) => {
 	try {
-		return res.send("Hello Aman docker");
+		return res.send("Hello Amanss docker");
 		// return res.status(200).send({
 		// 	users: req.user,
 		// 	message: `Welcome ${req.user.userName}`,
