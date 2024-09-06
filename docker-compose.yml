@@ -1,19 +1,22 @@
-version: '3.8'
+version: "3.8"
 services:
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
     depends_on:
       - mongo
     env_file:
-      - .env 
+      - .env
     environment:
       - NODE_ENV=production
-      - MONGO_URI=mongodb+srv://admin:admin@amancluster.9euhyzl.mongodb.net/mycontact-backend   
+      - MONGO_URI=mongodb+srv://admin:admin@amancluster.9euhyzl.mongodb.net/mycontact-backend
     volumes:
-      - .:/app
-      
+      - .:/usr/src/app # Make sure this is correct or remove if not needed
+    command: npm start
+
   mongo:
     image: mongo:5
     ports:
@@ -33,6 +36,6 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - app
-      
+
 volumes:
   mongo-data:
